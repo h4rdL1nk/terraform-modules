@@ -74,6 +74,7 @@ module "data-volumes" {
   size              = 10
   instance-names    = ["${module.pool-instances.instance-names}"]
   instance-ids      = ["${module.pool-instances.instance-ids}"]
+  wait-volume-ids   = ["${module.swap-volumes.volume-ids}"]
 }
 
 module "ds-volumes" {
@@ -84,6 +85,7 @@ module "ds-volumes" {
   size              = 20
   instance-names    = ["${module.pool-instances.instance-names}"]
   instance-ids      = ["${module.pool-instances.instance-ids}"]
+  wait-volume-ids   = ["${module.ds-volumes.volume-ids}"]
 }
 
 module "floating-ip-mgmt" {
