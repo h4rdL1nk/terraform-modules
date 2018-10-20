@@ -6,6 +6,8 @@ resource "openstack_compute_instance_v2" "main" {
   key_pair        = "${var.keypair-name}"
   security_groups = ["${var.security-group-names}"]
 
+  metadata = "${var.instance-metadata}"
+
   network { 
       name = "${element(var.network-names,0)}"
   }

@@ -16,3 +16,11 @@ variable "security-group-names" {
 variable "network-names" {
   type = "list"
 }
+
+variable "instance-metadata" {
+  type = "map"
+
+  default = {
+    dummy = "empty"
+  }
+}
