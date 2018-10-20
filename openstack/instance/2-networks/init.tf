@@ -1,8 +1,8 @@
 resource "openstack_compute_instance_v2" "main" {
-  count           = 1
-  name            = "test"
-  image_name      = "TID-RH75.20181001"
-  flavor_name     = "TID-02CPU-04GB-20GB"
+  count           = "${var.number}" 
+  name            = "${format("%s-%02d", var.name, count.index + 1)}" 
+  image_name      = "${var.image}"
+  flavor_name     = "${var.flavor}"
   key_pair        = "${var.keypair-name}"
   security_groups = ["${var.security-group-names}"]
 
