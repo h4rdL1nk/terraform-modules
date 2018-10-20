@@ -2,6 +2,10 @@ resource "openstack_blockstorage_volume_v2" "volume" {
   count = "${var.number}"
   name  = "${element(var.instance-names,count.index)}-${var.name}"
   size  = "${var.size}"
+
+  provisioner "local-exec" {
+    command = "sleep ${var.sleep}"
+  }
 }
 
 resource "openstack_compute_volume_attach_v2" "attach" {
