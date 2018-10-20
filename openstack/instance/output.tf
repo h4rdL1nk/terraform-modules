@@ -13,3 +13,15 @@ output "network-1-ipv4"{
 output "network-2-ipv4"{
     value = ["${openstack_compute_instance_v2.main.*.network.1.fixed_ip_v4}"]
 }
+
+output "network-3-ipv4"{
+    value = ["${openstack_compute_instance_v2.main.*.network.2.fixed_ip_v4}"]
+}
+
+output "network-4-ipv4"{
+    value = ["${openstack_compute_instance_v2.main.*.network.3.fixed_ip_v4}"]
+}
+
+output "network-5-ipv4"{
+    value = ["${openstack_compute_instance_v2.main.*.network.4.fixed_ip_v4}"]
+}
