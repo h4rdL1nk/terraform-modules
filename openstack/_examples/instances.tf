@@ -1,5 +1,5 @@
 module "network-management" {
-  source          = "../terraform/modules/openstack/networking"
+  source          = "../terraform/modules/openstack/networking/network"
   name            = "management"
   cidr            = "192.168.200.0/24"
   external-net-id = "f2dcc4ee-9ff4-443c-9bab-2a4b02200ea6"
@@ -8,7 +8,7 @@ module "network-management" {
 }
 
 module "network-inet" {
-  source          = "../terraform/modules/openstack/networking"
+  source          = "../terraform/modules/openstack/networking/network"
   name            = "inet"
   cidr            = "192.168.100.0/24"
   external-net-id = "0c7e7930-740e-419c-8377-c65a22eb3c31"
@@ -17,7 +17,7 @@ module "network-inet" {
 }
 
 module "network-corp" {
-  source          = "../terraform/modules/openstack/networking"
+  source          = "../terraform/modules/openstack/networking/network"
   name            = "corp"
   cidr            = "192.168.101.0/24"
   external-net-id = "8c0879d9-8247-46e3-b985-45a5dff37116"
@@ -74,4 +74,22 @@ module "data-volumes" {
   size              = 10
   instance-names    = ["${module.pool-instances.instance-names}"]
   instance-ids      = ["${module.pool-instances.instance-ids}"]
+}
+
+module "ds-volumes" {
+  source            = "../terraform/modules/openstack/storage/instance-blockstorage"
+  number            = "${var.instance-count}"
+  name              = "ds"
+  device            = "/dev/vdd"
+  size              = 20
+  instance-names    = ["${module.pool-instances.instance-names}"]
+  instance-ids      = ["${module.pool-instances.instance-ids}"]
+}
+
+module "floating-ip-mgmt" {
+  source        = "../terraform/modules/openstack/networking/floating-ip"
+  number        = "${var.instance-count}"
+  ip-pool       = "${lookup(var.ip-pools,"mgmt")}"
+  instance-ids  = ["${module.pool-instances.instance-ids}"]
+  instance-ips  = ["${module.pool-instances.network-1-ipv4}"]
 }
