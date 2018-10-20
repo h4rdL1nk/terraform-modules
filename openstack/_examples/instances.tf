@@ -65,7 +65,14 @@ module "swap-volumes" {
   size              = 5
   instance-names    = ["${module.pool-instances.instance-names}"]
   instance-ids      = ["${module.pool-instances.instance-ids}"]
+  wait-volume-ids   = ["0000"]
+  sleep             = 0
 }
+
+output "swap-volume-ids" {
+  value = ["${module.swap-volumes.volume-ids}"]
+}
+
 module "data-volumes" {
   source            = "../terraform/modules/openstack/storage/instance-blockstorage"
   number            = "${var.instance-count}"
@@ -75,6 +82,11 @@ module "data-volumes" {
   instance-names    = ["${module.pool-instances.instance-names}"]
   instance-ids      = ["${module.pool-instances.instance-ids}"]
   wait-volume-ids   = ["${module.swap-volumes.volume-ids}"]
+  sleep             = 10
+}
+
+output "data-volume-ids" {
+  value = ["${module.data-volumes.volume-ids}"]
 }
 
 module "ds-volumes" {
@@ -86,6 +98,11 @@ module "ds-volumes" {
   instance-names    = ["${module.pool-instances.instance-names}"]
   instance-ids      = ["${module.pool-instances.instance-ids}"]
   wait-volume-ids   = ["${module.data-volumes.volume-ids}"]
+  sleep             = 20
+}
+
+output "ds-volume-ids" {
+  value = ["${module.ds-volumes.volume-ids}"]
 }
 
 module "floating-ip-mgmt" {
