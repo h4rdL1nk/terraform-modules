@@ -1,6 +1,6 @@
 resource "openstack_blockstorage_volume_v2" "volume" {
   count = "${var.number}"
-  name  = "${element(var.instance-names,count.index)}-swap"
+  name  = "${element(var.instance-names,count.index)}-${var.name}"
   size  = "${var.size}"
 }
 
