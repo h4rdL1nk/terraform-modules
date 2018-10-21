@@ -65,7 +65,7 @@ module "swap-volumes" {
   size              = 5
   instance-names    = ["${module.pool-instances.instance-names}"]
   instance-ids      = ["${module.pool-instances.instance-ids}"]
-  wait-volume-ids   = ["0000"]
+  wait              = ["0000"]
   sleep             = 0
 }
 
@@ -81,7 +81,7 @@ module "data-volumes" {
   size              = 10
   instance-names    = ["${module.pool-instances.instance-names}"]
   instance-ids      = ["${module.pool-instances.instance-ids}"]
-  wait-volume-ids   = ["${module.swap-volumes.volume-ids}"]
+  wait              = ["${module.swap-volumes.volume-ids}"]
   sleep             = 10
 }
 
@@ -97,7 +97,7 @@ module "ds-volumes" {
   size              = 20
   instance-names    = ["${module.pool-instances.instance-names}"]
   instance-ids      = ["${module.pool-instances.instance-ids}"]
-  wait-volume-ids   = ["${module.data-volumes.volume-ids}"]
+  wait              = ["${module.data-volumes.volume-ids}"]
   sleep             = 20
 }
 

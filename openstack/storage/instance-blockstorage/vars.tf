@@ -3,7 +3,7 @@ variable "number" {}
 variable "name" {}
 
 # Dummy variable just to wait for other module to finish 
-variable "wait-volume-ids" {
+variable "wait" {
   type = "list"
 }
 
