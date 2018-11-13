@@ -9,6 +9,10 @@ variable "flavor" {}
 
 variable "number" {}
 
+variable "availability-zones" {
+  type = "list"
+}
+
 variable "security-group-names" {
   type = "list"
 }

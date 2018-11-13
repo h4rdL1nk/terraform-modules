@@ -6,6 +6,10 @@ variable "security-group-names" {
   type = "list"
 }
 
+variable "availability-zones" {
+  type = "list"
+}
+
 variable "networks" {
   type = "list"
 }

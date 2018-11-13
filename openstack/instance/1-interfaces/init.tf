@@ -8,6 +8,8 @@ resource "openstack_compute_instance_v2" "main" {
 
   metadata = "${var.instance-metadata}"
 
+  availability_zone = "${element(var.availability-zones,count.index)}"
+
   network { 
       name = "${element(var.network-names,0)}"
   }
