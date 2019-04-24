@@ -11,3 +11,9 @@ variable "dns-nameservers" {
 
   default = []
 }
+
+variable "host-routes" {
+  type = "list"
+
+  default = []
+}
