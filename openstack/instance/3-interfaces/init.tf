@@ -6,6 +6,10 @@ resource "openstack_compute_instance_v2" "main" {
   key_pair        = "${var.keypair-name}"
   security_groups = ["${var.security-group-names}"]
 
+  lifecycle {
+      ignore_changes = [ "availability_zone" ]
+  }
+
   metadata = "${var.instance-metadata}"
 
   availability_zone = "${element(var.availability-zones,count.index)}"
