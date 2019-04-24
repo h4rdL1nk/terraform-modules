@@ -8,4 +8,6 @@ variable "external-net-id" {}
 
 variable "dns-nameservers" {
   type = "list"
+
+  default = []
 }
