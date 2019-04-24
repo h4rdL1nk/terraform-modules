@@ -5,6 +5,10 @@ resource "openstack_compute_instance_v2" "main" {
   flavor_name     = "${var.flavor}"
   key_pair        = "${var.keypair-name}"
   security_groups = ["${var.security-group-names}"]
+  
+  lifecycle {
+      ignore_changes = [ "availability_zone" ]
+  }
 
   metadata = "${var.instance-metadata}"
 
