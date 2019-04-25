@@ -19,6 +19,15 @@ resource "openstack_networking_subnet_v2" "subnets" {
   ip_version      = 4
 }
 
+/*TODO
+resource "openstack_networking_subnet_route_v2" "routes" {
+  count            = "${var.subnet-count}"
+  subnet_id        = "${element(openstack_networking_subnet_v2.subnets.*.id,count.index)}"
+  destination_cidr = "${}"
+  next_hop         = "${}"
+}
+*/
+  
 resource "openstack_networking_router_interface_v2" "router-interfaces" {
   count     = "${var.subnet-count}"
   router_id = "${openstack_networking_router_v2.routers.id}"
