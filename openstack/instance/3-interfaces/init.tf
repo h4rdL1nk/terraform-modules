@@ -4,7 +4,7 @@ resource "openstack_compute_instance_v2" "main" {
   image_name      = "${var.image}"
   flavor_name     = "${var.flavor}"
   key_pair        = "${var.keypair-name}"
-  security_groups = ["${var.security-group-names}"]
+  security_groups = "${var.security-group-names}"
 
   lifecycle {
       ignore_changes = [ "availability_zone" ]
