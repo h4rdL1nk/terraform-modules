@@ -3,10 +3,10 @@ output "instance-ids" {
 }
 
 output "instance-ips" {
-    value = ["${openstack_compute_floatingip_associate_v2.ips-assoc.*.fixed_ip}"]
+    value = "${openstack_compute_floatingip_associate_v2.ips-assoc.*.fixed_ip}"
 }
 
 output "floating-ips" {
-    value = ["${openstack_compute_floatingip_associate_v2.ips-assoc.*.floating_ip}"]
+    value = "${openstack_compute_floatingip_associate_v2.ips-assoc.*.floating_ip}"
 }
 
