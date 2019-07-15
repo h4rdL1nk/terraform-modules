@@ -14,7 +14,7 @@ resource "openstack_networking_subnet_v2" "subnets" {
   name            = "subnet-${openstack_networking_network_v2.networks.name}-${count.index + 1}"
   network_id      = "${openstack_networking_network_v2.networks.id}"
   cidr            = "${var.cidr}"
-  dns_nameservers = ["${var.dns-nameservers}"]
+  dns_nameservers = "${var.dns-nameservers}"
   host_routes     = "${var.host-routes}"
   ip_version      = 4
 }
