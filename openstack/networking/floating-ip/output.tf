@@ -1,5 +1,5 @@
 output "instance-ids" {
-    value = ["${openstack_compute_floatingip_associate_v2.ips-assoc.*.instance_id}"]
+    value = "${openstack_compute_floatingip_associate_v2.ips-assoc.*.instance_id}"
 }
 
 output "instance-ips" {
