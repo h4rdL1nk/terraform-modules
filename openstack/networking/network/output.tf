@@ -3,5 +3,5 @@ output "network-name" {
 }
 
 output "subnet-ids" {
-  value = ["${openstack_networking_subnet_v2.subnets.*.id}"]
+  value = "${openstack_networking_subnet_v2.subnets.*.id}"
 }
